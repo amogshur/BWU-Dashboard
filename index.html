@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Integrated Weekly Coordinator Dashboard</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(90deg, #020617, #0f172a);
+    color: white;
+    padding: 18px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+header img {
+    height: 55px;
+    background: white;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+/* TABS */
+.tabs {
+    display: flex;
+    background: #1e293b;
+}
+
+.tabs button {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    background: transparent;
+    color: #e5e7eb;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.tabs button.active {
+    background: #2563eb;
+    color: white;
+}
+
+/* CONTAINER */
+.container {
+    padding: 25px;
+    max-width: 1300px;
+    margin: auto;
+}
+
+/* SECTION CARD */
+.section {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.section h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-left: 5px solid #2563eb;
+    padding-left: 12px;
+    font-size: 18px;
+}
+
+/* FORM GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+/* INPUTS */
+input, select, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px #bfdbfe;
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* BUTTON */
+.export-btn {
+    background: linear-gradient(90deg, #16a34a, #22c55e);
+    color: white;
+    padding: 14px 26px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.export-btn:hover {
+    opacity: 0.9;
+}
+
+.hidden {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="https://www.brainwareuniversity.ac.in/images/logo.png" alt="Brainware University Logo">
+    <h1>Weekly Coordinator Integrated Reporting Dashboard</h1>
+</header>
+
+<div class="tabs">
+    <button class="active" onclick="showTab('programme', this)">Programme Coordinator</button>
+    <button onclick="showTab('placement', this)">Placement Coordinator</button>
+</div>
+
+<div class="container">
+
+<!-- PROGRAMME DASHBOARD -->
+<div id="programme">
+<div class="section">
+<h3>Programme Coordinator Report</h3>
+<div class="grid">
+<input placeholder="Name">
+<input placeholder="Department">
+<input placeholder="Batches">
+<input type="number" placeholder="Total Students">
+<input type="number" placeholder="Above 75% Attendance">
+<input type="number" placeholder="Below 50% Attendance">
+<textarea placeholder="Attendance Improvement Activities"></textarea>
+<input type="number" placeholder="Students Communicated (<50%)">
+<input type="number" placeholder="Parents Communicated (<50%)">
+<input type="number" placeholder="Unable to Communicate">
+<textarea placeholder="Steps Taken"></textarea>
+<input type="number" placeholder="Classes Swapped">
+<input type="number" placeholder="Classes Adjusted">
+<input type="number" placeholder="Classes Cancelled">
+<textarea placeholder="Reason if Cancelled"></textarea>
+<input placeholder="MLP Alignment (Yes / No)">
+<input placeholder="Notes Uploaded (Yes / No)">
+<input placeholder="Classes Smooth (Yes / No)">
+<input type="number" placeholder="External Activities Count">
+<textarea placeholder="Major Observations & Action Taken"></textarea>
+</div>
+</div>
+</div>
+
+<!-- PLACEMENT DASHBOARD -->
+<div id="placement" class="hidden">
+<div class="section">
+<h3>Placement Coordinator Report</h3>
+<div class="grid">
+<input placeholder="Name">
+<input placeholder="Department">
+<input type="number" placeholder="Final Year Students">
+<input type="number" placeholder="Placeable Students">
+<input type="number" placeholder="Placed Till Date">
+<input type="number" placeholder="Good Technical">
+<input type="number" placeholder="Average Technical">
+<input type="number" placeholder="Poor Technical">
+<input type="number" placeholder="Placement Drives Conducted">
+<input type="number" placeholder="Eligible Students (Repeat Count)">
+<input type="number" placeholder="Students Participated">
+<input type="number" placeholder="Placed This Week">
+<input type="number" placeholder="Did Not Attend Any Drive">
+<textarea placeholder="Steps Taken"></textarea>
+<input type="number" placeholder="<3 Drives Not Placed">
+<input type="number" placeholder=">5 Drives Not Placed">
+<textarea placeholder="Steps Taken"></textarea>
+<textarea placeholder="Major Observations"></textarea>
+<input type="number" placeholder="Pre-final Year Batches">
+<input type="number" placeholder="Pre-final Year Students">
+<input type="number" placeholder="Good Technical (Pre-final)">
+<input type="number" placeholder="Average Technical (Pre-final)">
+<input type="number" placeholder="Poor Technical (Pre-final)">
+<input type="number" placeholder="Technical Grooming Classes">
+<input type="number" placeholder="Non-Technical Grooming Classes">
+<input type="number" placeholder="<10hrs Grooming Batches">
+<textarea placeholder="Reason"></textarea>
+<input type="number" placeholder="Average Attendance">
+<input type="number" placeholder="<90% Attendance">
+<input type="number" placeholder="Students Communicated">
+<input type="number" placeholder="Parents Communicated">
+<textarea placeholder="Final Observations"></textarea>
+</div>
+</div>
+</div>
+
+<button class="export-btn" onclick="exportExcel()">📥 Export to Excel</button>
+
+</div>
+
+<script>
+function showTab(tab, btn) {
+    document.getElementById("programme").classList.add("hidden");
+    document.getElementById("placement").classList.add("hidden");
+    document.querySelectorAll(".tabs button").forEach(b => b.classList.remove("active"));
+
+    document.getElementById(tab).classList.remove("hidden");
+    btn.classList.add("active");
+}
+
+function exportExcel() {
+    let data = [];
+    document.querySelectorAll("input, textarea").forEach(el => {
+        data.push({ Field: el.placeholder, Value: el.value });
+    });
+
+    let ws = XLSX.utils.json_to_sheet(data);
+    let wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Weekly Report");
+
+    XLSX.writeFile(wb, "Weekly_Coordinator_Report.xlsx");
+}
+</script>
+
+</body>
+</html>
